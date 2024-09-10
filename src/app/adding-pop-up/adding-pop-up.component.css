@@ -1,0 +1,180 @@
+/* Styling the Dialog Container */
+.dialog-container {
+  padding: 20px;
+  position: relative;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* Styling for the form elements */
+form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+label {
+  margin: 10px 0 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+  height: 100px; /* Default height */
+}
+
+/* Styling the Close Button */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #888; /* Soft gray */
+}
+
+/* Header Styling */
+h2 {
+  margin-bottom: 20px;
+  color: #0070ad;
+  text-align: center;
+}
+
+/* Container for Content */
+.content {
+  display: flex;
+  gap: 20px;
+}
+
+/* Left Column for Image and File Upload */
+.left-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 120px; /* Adjusted size */
+}
+
+/* Styling the Image Container */
+.image-container {
+  border: 2px dashed #ccc;
+  width: 100px; /* Reduced size */
+  height: 100px; /* Reduced size */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.selected-image {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Right Column for Input Fields */
+.right-column {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Full-width form fields */
+.full-width {
+  width: 100%;
+}
+
+/* Button to Choose File */
+button[type="button"] {
+  margin-bottom: 10px;
+  background-color: #0070ad;
+  color: white;
+}
+
+button[type="button"]:hover {
+  background-color: #005f99;
+}
+
+/* Styling the Add Button */
+.submit-button {
+  background-color: #28a745;
+  color: #ffffff;
+}
+
+.submit-button:hover {
+  background-color: #218838;
+}
+
+/* Table Styling for Collaborators */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.mat-header-cell {
+  background-color: #0070ad;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+}
+
+.mat-cell {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.mat-row:hover {
+  background-color: #f1f1f1;
+}
+
+/* Checkbox column styling */
+.mat-column-select {
+  width: 50px;
+  text-align: center;
+}
+
+/* Scroll styling if table overflows */
+table {
+  max-height: 200px;
+  overflow-y: auto;
+  display: block;
+}
+
+/* Filter Row Styling */
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-field {
+  flex: 1 1 200px; /* Adjusted width for flexibility */
+}
+
+/* Responsive handling */
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .left-column, .right-column {
+    width: 100%;
+  }
+
+  .filter-container {
+    flex-direction: column;
+  }
+}
+
+ 

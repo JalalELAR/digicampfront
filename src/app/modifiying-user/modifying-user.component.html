@@ -1,0 +1,46 @@
+<div>
+  <h2>Edit User</h2>
+  <form (ngSubmit)="updateUser()">
+    <div>
+      <label for="fullName">Full Name</label>
+      <input
+        type="text"
+        id="fullName"
+        [(ngModel)]="user.fullName"
+        name="fullName"
+      />
+    </div>
+
+    <div>
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        [(ngModel)]="user.email"
+        name="email"
+        readonly
+      />
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Rôle</mat-label>
+        <mat-select [(value)]="user.role" [(ngModel)]="user.role" name="role" required>
+          <mat-option *ngFor="let role of roles" [value]="role">
+            {{ role }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <button type="submit">Update User</button>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="successMessage" class="success-message">
+      {{ successMessage }}
+    </div>
+  </form>
+</div>

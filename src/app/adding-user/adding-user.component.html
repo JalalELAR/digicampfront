@@ -1,0 +1,25 @@
+<h2 mat-dialog-title style="text-align: center; font-size: 30px; font-weight: lighter;">
+  <b>INFORMATIONS</b> <br>D'UTILISATEUR
+</h2>
+<button mat-icon-button class="close-button" mat-dialog-close>
+  <mat-icon style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 30px;">x</mat-icon>
+</button>
+
+<mat-dialog-content>
+  <form (ngSubmit)="onSave()" #projectForm="ngForm">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>LE NOM D'UTILISATEUR </mat-label>
+      <input matInput placeholder="Nom" [(ngModel)]="fullName" name="fullName" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label >EMAIL D'UTILISATEUR </mat-label>
+      <input matInput placeholder="12345@capgemini.com" [(ngModel)]="email" name="Mail" required>
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button class="submit-button" (click)="onSave()">Ajouter</button>
+</mat-dialog-actions>

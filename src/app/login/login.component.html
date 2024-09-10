@@ -1,0 +1,14 @@
+<div class="login-container">
+  <div class="login">
+    <img src="Capgemini2.png" width="400" height="222"Style="">
+    <form (ngSubmit)="onSubmit()">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="test@capgemini.com" [(ngModel)]="user.email">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="******" [(ngModel)]="user.password">
+      <div>
+      <input type="checkbox" id="hh" (click)="togglePasswordVisibility($event)" ><label for="hh"><span style="color: rgb(7, 64, 207);font-size: 15px;cursor: pointer;margin-left: 7px;">  Show Password</span></label></div>
+      <button type="submit" class="btn btn-signin">Sign In</button>
+    </form>
+  </div>
+</div>

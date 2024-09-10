@@ -1,0 +1,81 @@
+h1 {
+  font-size: 2em;
+  font-weight: 700;
+  color: #0070AD;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.details-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  column-gap: 50px; /* Espacement entre les éléments */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.label {
+  font-weight: bold;
+  color: #0070AD;
+  margin-bottom: 5px;
+  font-size: 1.2em;
+}
+
+p {
+  margin: 0;
+  font-size: 1.1em;
+  color: #333;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px; /* Espace entre l'image et les détails */
+}
+
+.selected-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.info-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 10px;
+  width: 100%; /* Assure que les détails prennent toute la largeur disponible */
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.close-button {
+  background-color: #0070AD;
+  color: white;
+  padding: 10px 30px;
+  border-radius: 8px;
+  font-size: 1.2em;
+  box-shadow: 0 4px 8px rgba(0, 112, 173, 0.4);
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  background-color: #005A89;
+}

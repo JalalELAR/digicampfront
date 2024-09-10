@@ -1,0 +1,142 @@
+<div class="dialog-container">
+  <!-- Bouton de fermeture de la pop-up -->
+  <button mat-icon-button class="close-button" (click)="dialogRef.close()" mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <!-- Titre de la pop-up -->
+  <h2 mat-dialog-title>Ajouter Projet</h2>
+
+  <div class="content">
+    <!-- Colonne de gauche pour l'image et le bouton -->
+    <div class="left-column">
+      <div class="image-container">
+        <img *ngIf="srcResult" [src]="srcResult" alt="Selected Image" class="selected-image" />
+      </div>
+      <button type="button" mat-raised-button (click)="fileInput.click()">Choisir un fichier</button>
+      <input 
+        hidden 
+        (change)="onFileSelected($event)" 
+        #fileInput 
+        type="file" 
+        id="file"
+        accept="image/*"
+      />
+    </div>
+
+    <!-- Colonne de droite pour les champs de saisie et les filtres -->
+    <div class="right-column">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nom du Projet</mat-label>
+        <input matInput [(ngModel)]="title" name="title" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Description du Projet</mat-label>
+        <textarea matInput [(ngModel)]="description" name="description" rows="6" class="no-resize"></textarea>
+      </mat-form-field>
+
+      <label for="status">Status</label>
+      <mat-form-field appearance="fill">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="selectedstatus" name="projectStatus">
+          <mat-option *ngFor="let status of statuses" [value]="status">{{ status.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Filtres pour les collaborateurs -->
+      <div class="filter-container">
+        <mat-form-field appearance="outline" class="filter-field">
+          <mat-label>Filtrer par Site</mat-label>
+          <mat-select [(ngModel)]="filters.site" (selectionChange)="applyFilters()">
+            <mat-option value="">Tous</mat-option>
+            <mat-option *ngFor="let site of distinctSites" [value]="site">{{ site }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="filter-field">
+          <mat-label>Filtrer par Grade</mat-label>
+          <mat-select [(ngModel)]="filters.grade" (selectionChange)="applyFilters()">
+            <mat-option value="">Tous</mat-option>
+            <mat-option *ngFor="let grade of distinctGrades" [value]="grade">{{ grade }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="filter-field">
+          <mat-label>Filtrer par Role</mat-label>
+          <mat-select [(ngModel)]="filters.role" (selectionChange)="applyFilters()">
+            <mat-option value="">Tous</mat-option>
+            <mat-option *ngFor="let role of distinctRoles" [value]="role">{{ role }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="filter-field">
+          <mat-label>Filtrer par Statut</mat-label>
+          <mat-select [(ngModel)]="filters.statut" (selectionChange)="applyFilters()">
+            <mat-option value="">Tous</mat-option>
+            <mat-option *ngFor="let statut of distinctStatuts" [value]="statut">{{ statut }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Tableau de Sélection des Collaborateurs -->
+      <h3>Sélectionner les Collaborateurs</h3>
+      <table mat-table [dataSource]="filteredCollaborators" class="mat-elevation-z8">
+        <!-- Colonne Sélection -->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let collab">
+            <mat-checkbox [(ngModel)]="collab.selected" (change)="onCollabSelectChange(collab)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+
+        <!-- Colonne ID -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let collab">{{ collab.id }}</td>
+        </ng-container>
+
+        <!-- Colonne Nom -->
+        <ng-container matColumnDef="nom">
+          <th mat-header-cell *matHeaderCellDef>Nom</th>
+          <td mat-cell *matCellDef="let collab">{{ collab.nom }}</td>
+        </ng-container>
+
+        <!-- Colonne Site -->
+        <ng-container matColumnDef="site">
+          <th mat-header-cell *matHeaderCellDef>Site</th>
+          <td mat-cell *matCellDef="let collab">{{ collab.site?.city }}</td>
+        </ng-container>
+
+        <!-- Colonne Grade -->
+        <ng-container matColumnDef="grade">
+          <th mat-header-cell *matHeaderCellDef>Grade</th>
+          <td mat-cell *matCellDef="let collab">{{ collab.grade?.gradeName }}</td>
+        </ng-container>
+
+        <!-- Colonne Role -->
+        <ng-container matColumnDef="role">
+          <th mat-header-cell *matHeaderCellDef>Role</th>
+          <td mat-cell *matCellDef="let collab">{{ collab.roleCollab?.role }}</td>
+        </ng-container>
+
+        <!-- Colonne Statut -->
+        <ng-container matColumnDef="statutCollab">
+          <th mat-header-cell *matHeaderCellDef>Statut</th>
+          <td mat-cell *matCellDef="let collab">{{ collab.statutCollab?.statut }}</td>
+        </ng-container>
+
+        <!-- Lignes du tableau -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Bouton d'ajout -->
+  <div mat-dialog-actions>
+    <button mat-button class="submit-button" (click)="onSave()">Ajouter</button>
+  </div>
+</div>
+ 

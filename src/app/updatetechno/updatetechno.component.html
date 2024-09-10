@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Modifier Technologie</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Nom de la technologie</mat-label>
+    <input matInput [(ngModel)]="techno.name" required>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onSave()">Save</button>
+  <button mat-button (click)="dialogRef.close()">Cancel</button>
+</div>

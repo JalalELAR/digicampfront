@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Collaborateur Details</h1>
+<div mat-dialog-content *ngIf="collaborateur" class="details-container">
+  <div class="image-container" *ngIf="collaborateur.image">
+    <img *ngIf="srcResult" [src]="srcResult" alt="Collaborateur Image" class="selected-image"/>
+  </div>
+  <div class="info-section">
+    <p><span class="label">ID:</span> {{ collaborateur.id }}</p>
+    <p><span class="label">Nom:</span> {{ collaborateur.nom }}</p>
+    <p><span class="label">Email:</span> {{ collaborateur.email }}</p>
+    <p><span class="label">Site:</span> {{ collaborateur.site.city }}</p>
+    <p><span class="label">Grade:</span> {{ collaborateur.grade.gradeName }}</p>
+    <p><span class="label">Technos:</span> {{ technosName }}</p>
+    <p><span class="label">Role:</span> {{ collaborateur.roleCollab.role }}</p>
+    <p><span class="label">Statut:</span> {{ collaborateur.statutCollab.statut }}</p>
+  </div>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-button (click)="onClose()" class="close-button">Close</button>
+</div>

@@ -1,0 +1,102 @@
+/* Styles pour la Navbar */
+.navbar {
+  background-color: #0070ad; /* Fond bleu pour la navbar */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Police plus moderne */
+}
+
+.nav-link {
+  color: #ffffff; /* Couleur des liens en blanc */
+  font-weight: 500; /* Poids de la police intermédiaire */
+  text-transform: uppercase;
+  padding: 10px 15px;
+  transition: color 0.3s, background-color 0.3s; /* Transition plus fluide */
+}
+
+.nav-link:hover {
+  color: #b3d9ff; /* Bleu plus clair au survol */
+  background-color: #005f99; /* Arrière-plan bleu foncé au survol */
+  border-radius: 5px; /* Arrondir les bords lors du survol */
+}
+
+/* Exemple d'un style spécifique si nécessaire */
+#newstyle {
+  color: #03c0d0; /* Teinte bleue différente pour un lien spécifique */
+  cursor: pointer;
+  position: relative;
+}
+
+#newstyle::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #03c0d0; /* Couleur du soulignement */
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+#newstyle:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Input fields styling */
+input[type="text"], input[type="email"], input[type="password"], textarea {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 8px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover, textarea:hover {
+  border-color: #0070ad;
+  box-shadow: 0 0 5px rgba(0, 112, 173, 0.5); /* Lueur bleue lors du survol */
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus {
+  border-color: #005f99;
+  box-shadow: 0 0 8px rgba(0, 95, 153, 0.5); /* Lueur bleue plus intense lors du focus */
+  outline: none;
+}
+.navbar-light-gray {
+  background-color: #f5f5f5; /* Gris très clair */
+}
+
+.navbar-light-gray .navbar-nav .nav-link {
+  color: #333333; /* Texte en gris foncé pour le contraste */
+}
+
+.navbar-light-gray .navbar-nav .nav-link:hover {
+  color: #000000; /* Texte en noir pour le survol */
+}
+/* Barre de navigation avec ligne en bas */
+.navbar-light-gray {
+  background-color: #f5f5f5; /* Gris très clair */
+  border-bottom: 2px solid #0070ad; /* Ligne bleue en bas de la navbar */
+}
+
+/* Style pour les liens de la navbar */
+.nav-link {
+  color: #333333; /* Couleur du texte des liens */
+  font-weight: 500; /* Poids de la police */
+  text-transform: uppercase;
+  padding: 10px 15px;
+  transition: color 0.3s, background-color 0.3s; /* Transition fluide */
+}
+
+/* Changement de couleur au survol */
+.nav-link:hover {
+  color: #b3d9ff; /* Bleu clair au survol */
+  background-color: #005f99; /* Fond bleu foncé au survol */
+  border-radius: 5px; /* Bords arrondis lors du survol */
+}
+
+/* Style pour l'élément actif */
+.nav-link.active {
+  color: #0070ad; /* Couleur bleue pour l'élément actif */
+  background-color: transparent; /* Pas de fond pour l'élément actif */
+  border-bottom: 2px solid #0070ad; /* Ligne bleue en bas de l'élément actif */
+}

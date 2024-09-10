@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="parametres.component.css">
+</head>
+<body>
+  <app-navbar></app-navbar>
+  <main class="main-content">
+    <div class="container mt-4">
+      <!-- Grades Section -->
+      <div class="center">
+        <div class="filter-container mb-3 d-flex justify-content-between align-items-center">
+          <mat-form-field class="filter-input flex-item">
+            <mat-label>Filter Les Grades</mat-label>
+            <input matInput (keyup)="applyFilter($event, dataSource)" placeholder="Ex. B2" #input>
+          </mat-form-field>
+                <!-- Dropdown filter for grade -->
+          <mat-form-field class="filter-dropdown flex-item">
+            <mat-label>Filtrer par Grade</mat-label>
+            <mat-select [(value)]="selectedgrade" (selectionChange)="filterGrades()">
+              <mat-option *ngFor="let grade of grades" [value]="grade.gradeName">
+                {{ grade.gradeName }}
+              </mat-option>
+              <mat-option [value]="null">Toutes les grades</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button mat-button class="add-button flex-item" (click)="openPopup1()">Ajouter</button>
+        </div>
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Id Grade </th>
+              <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="nom">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom Grade </th>
+              <td mat-cell *matCellDef="let row"> {{row.gradeName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef class="text-center"> Actions </th>
+              <td mat-cell *matCellDef="let row" class="text-center">
+                <button mat-icon-button aria-label="Modifier" (click)="onEditGrade(row.id)" class="btn btn-info btn-sm mx-1">
+                   <mat-icon>edit</mat-icon> Modifier 
+                </button>
+                <button mat-icon-button aria-label="Supprimer" (click)="onDeleteGrade(row.id)" class="btn btn-danger btn-sm mx-1">
+                    <mat-icon>delete</mat-icon> Supprimer
+                </button>
+               </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sites Section -->
+    <div class="container mt-4">
+      <div class="center">
+        <div class="filter-container">
+          <mat-form-field class="filter-input">
+            <mat-label>Filter Les Sites</mat-label>
+            <input matInput (keyup)="applyFilter($event, dataSource3)" placeholder="Ex. Rabat" #input>
+          </mat-form-field>
+              <!-- Dropdown filter for site -->
+          <mat-form-field class="filter-dropdown flex-item">
+            <mat-label>Filtrer par Grade</mat-label>
+            <mat-select [(value)]="selectedSite" (selectionChange)="filterSites()">
+              <mat-option *ngFor="let site of sites" [value]="site.city">
+                {{ site.city }}
+              </mat-option>
+              <mat-option [value]="null">Tous les sites</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button mat-button class="add-button" (click)="openPopup2()">Ajouter</button>
+        </div>
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource3" matSort>
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Id Site </th>
+              <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="nom">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom Site </th>
+              <td mat-cell *matCellDef="let row"> {{row.city}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef class="text-center"> Actions </th>
+              <td mat-cell *matCellDef="let row" class="text-center">
+                <button mat-icon-button aria-label="Modifier" (click)="onEditSite(row.id)" class="btn btn-info btn-sm mx-1">
+                   <mat-icon>edit</mat-icon> Modifier 
+                </button>
+                <button mat-icon-button aria-label="Supprimer" (click)="onDeleteSite(row.id)" class="btn btn-danger btn-sm mx-1">
+                    <mat-icon>delete</mat-icon> Supprimer
+                </button>
+               </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns3;"></tr>
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+          </table>
+          <mat-paginator #paginator3 [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+      </div>
+    </div>
+
+        <!-- Status Section -->
+        <div class="container mt-4">
+          <div class="center">
+            <div class="filter-container">
+              <mat-form-field class="filter-input">
+                <mat-label>Filter Les Status</mat-label>
+                <input matInput (keyup)="applyFilter($event, dataSource4)" placeholder="Ex. Rabat" #input>
+              </mat-form-field>
+              <!-- Dropdown filter for status -->
+              <mat-form-field class="filter-dropdown flex-item">
+                <mat-label>Filtrer par Status</mat-label>
+                <mat-select [(value)]="selectedStatus" (selectionChange)="filterStatus()">
+                  <mat-option *ngFor="let stats of status" [value]="stats.name">
+                    {{ stats.name }}
+                  </mat-option>
+                  <mat-option [value]="null">Tous les status</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <button mat-button class="add-button" (click)="openPopup4()">Ajouter</button>
+            </div>
+            <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="dataSource4" matSort>
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Id Status </th>
+                  <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                </ng-container>
+                <ng-container matColumnDef="nom">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom Status </th>
+                  <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="actions">
+                  <th mat-header-cell *matHeaderCellDef class="text-center"> Actions </th>
+                  <td mat-cell *matCellDef="let row" class="text-center">
+                    <button mat-icon-button aria-label="Modifier" (click)="onEditStatus(row.id)" class="btn btn-info btn-sm mx-1">
+                       <mat-icon>edit</mat-icon> Modifier 
+                    </button>
+                    <button mat-icon-button aria-label="Supprimer" (click)="onDeleteStatus(row.id)" class="btn btn-danger btn-sm mx-1">
+                        <mat-icon>delete</mat-icon> Supprimer
+                    </button>
+                   </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns4"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns4;"></tr>
+                <tr class="mat-row" *matNoDataRow>
+                  <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                </tr>
+              </table>
+              <mat-paginator #paginator4 [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+            </div>
+          </div>
+        </div>
+
+            <!-- Roles Section -->
+    <div class="container mt-4">
+      <div class="center">
+        <div class="filter-container">
+          <mat-form-field class="filter-input">
+            <mat-label>Filter Les Roles</mat-label>
+            <input matInput (keyup)="applyFilter($event, dataSource5)" placeholder="Ex. Testeur" #input>
+          </mat-form-field>
+          <!-- Dropdown filter for roles -->
+          <mat-form-field class="filter-dropdown flex-item">
+            <mat-label>Filtrer par Role</mat-label>
+            <mat-select [(value)]="selectedrole" (selectionChange)="filterRole()">
+              <mat-option *ngFor="let role of roles" [value]="role.role">
+                {{ role.role }}
+              </mat-option>
+              <mat-option [value]="null">Tous les roles</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button mat-button class="add-button" (click)="openPopup5()">Ajouter</button>
+        </div>
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource5" matSort>
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Id Role </th>
+              <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="nom">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom du Role </th>
+              <td mat-cell *matCellDef="let row"> {{row.role}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef class="text-center"> Actions </th>
+              <td mat-cell *matCellDef="let row" class="text-center">
+                <button mat-icon-button aria-label="Modifier" (click)="onEditRole(row.id)" class="btn btn-info btn-sm mx-1">
+                   <mat-icon>edit</mat-icon> Modifier 
+                </button>
+                <button mat-icon-button aria-label="Supprimer" (click)="onDeleteRole(row.id)" class="btn btn-danger btn-sm mx-1">
+                    <mat-icon>delete</mat-icon> Supprimer
+                </button>
+               </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns5"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns5;"></tr>
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+          </table>
+          <mat-paginator #paginator5 [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+      </div>
+    </div>
+
+        <!-- StatutCollab Section -->
+        <div class="container mt-4">
+          <div class="center">
+            <div class="filter-container">
+              <mat-form-field class="filter-input">
+                <mat-label>Filter Les Statuts</mat-label>
+                <input matInput (keyup)="applyFilter($event, dataSource6)" placeholder="Ex. Rabat" #input>
+              </mat-form-field>
+              <!-- Dropdown filter for statuts -->
+              <mat-form-field class="filter-dropdown flex-item">
+                <mat-label>Filtrer par Statuts Collaborateur</mat-label>
+                <mat-select [(value)]="selectedStatut" (selectionChange)="filterStatutCollab()">
+                  <mat-option *ngFor="let statut of statuts" [value]="statut.statut">
+                    {{ statut.statut }}
+                  </mat-option>
+                  <mat-option [value]="null">Tous les statuts</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <button mat-button class="add-button" (click)="openPopup6()">Ajouter</button>
+            </div>
+            <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="dataSource6" matSort>
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Id StatutC </th>
+                  <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                </ng-container>
+                <ng-container matColumnDef="nom">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom Statut </th>
+                  <td mat-cell *matCellDef="let row"> {{row.statut}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="actions">
+                  <th mat-header-cell *matHeaderCellDef class="text-center"> Actions </th>
+                  <td mat-cell *matCellDef="let row" class="text-center">
+                    <button mat-icon-button aria-label="Modifier" (click)="onEditStatutCollab(row.id)" class="btn btn-info btn-sm mx-1">
+                       <mat-icon>edit</mat-icon> Modifier 
+                    </button>
+                    <button mat-icon-button aria-label="Supprimer" (click)="onDeleteStatutCollab(row.id)" class="btn btn-danger btn-sm mx-1">
+                        <mat-icon>delete</mat-icon> Supprimer
+                    </button>
+                   </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns6"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns6;"></tr>
+                <tr class="mat-row" *matNoDataRow>
+                  <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                </tr>
+              </table>
+              <mat-paginator #paginator6 [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+            </div>
+          </div>
+        </div>
+
+    <!-- Technologies Section -->
+    <div class="container mt-4">
+      <div class="center">
+        <div class="filter-container">
+          <mat-form-field class="filter-input">
+            <mat-label>Filter Les Technologies</mat-label>
+            <input matInput (keyup)="applyFilter($event, dataSource2)" placeholder="Ex. Java" #input>
+          </mat-form-field>
+          <!-- Dropdown filter for technologies -->
+          <mat-form-field class="filter-dropdown flex-item">
+            <mat-label>Filtrer par technologies </mat-label>
+            <mat-select [(value)]="selectedtechno" (selectionChange)="filterTechno()">
+              <mat-option *ngFor="let techno of technos" [value]="techno.name">
+                {{ techno.name }}
+              </mat-option>
+              <mat-option [value]="null">Toutes les technologies</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-button class="add-button" (click)="openPopup3()">Ajouter</button>
+        </div>
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource2" matSort>
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Id Technologie </th>
+              <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="nom">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom Technologie </th>
+              <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                  <th mat-header-cell *matHeaderCellDef class="text-center"> Actions </th>
+                  <td mat-cell *matCellDef="let row" class="text-center">
+                    <button mat-icon-button aria-label="Modifier" (click)="onEditTechno(row.id)" class="btn btn-info btn-sm mx-1">
+                       <mat-icon>edit</mat-icon> Modifier 
+                    </button>
+                    <button mat-icon-button aria-label="Supprimer" (click)="onDeleteTechno(row.id)" class="btn btn-danger btn-sm mx-1">
+                        <mat-icon>delete</mat-icon> Supprimer
+                    </button>
+                   </td>
+                </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+          </table>
+          <mat-paginator #paginator2 [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </main>
+  <app-footer></app-footer>
+</body>
+</html>

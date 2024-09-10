@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Project Details</h1>
+<div mat-dialog-content *ngIf="projet" class="details-container">
+  <div class="image-container" *ngIf="srcResult">
+    <img [src]="srcResult" alt="Project Image" class="selected-image" />
+  </div>
+  <div class="info-section">
+    <p><span class="label">ID:</span> {{ projet.id }}</p>
+    <p><span class="label">Name:</span> {{ projet.title }}</p>
+    <p><span class="label">Description:</span> {{ projet.description }}</p>
+    <p><span class="label">Status:</span> {{ projet.status.name }}</p>
+    <p><span class="label">Date:</span> {{ projet.dated | date: 'mediumDate' }}</p>
+    <p><span class="label">Collaborators:</span> {{ collaborateurName }}</p>
+  </div>
+</div>
+
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-button (click)="onClose()" class="close-button">Close</button>
+</div>

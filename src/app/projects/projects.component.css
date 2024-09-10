@@ -1,0 +1,134 @@
+/* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar and Footer Styling */
+app-navbar {
+  display: block;
+}
+
+app-footer {
+  display: block;
+  margin-top: auto;
+}
+
+/* Container Styling */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Filter and Add Button */
+.filter-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-input {
+  flex: 1;
+}
+
+.add-button {
+  color: white;
+  background-color: #0070ad;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+}
+
+.add-button:hover {
+  background-color: #005f99;
+}
+
+/* Table Styling */
+.mat-elevation-z8 {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+th.mat-header-cell {
+  background-color: #0070ad;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+}
+
+td.mat-cell {
+  text-align: center;
+}
+
+/* Button Styling */
+.btn-info {
+  background-color: #17a2b8;
+  border: none;
+}
+
+.btn-info:hover {
+  background-color: #138496;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* Aligning Buttons in Actions Column */
+.mat-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-cell .btn {
+  margin: 0 5px;
+}
+
+/* No Data Row Styling */
+.mat-row {
+  text-align: center;
+}
+
+.mat-no-data-row {
+  text-align: center;
+}
+
+/* Snackbar Styling */
+.snackbar-success {
+  background-color: #4caf50;
+}
+
+.snackbar-error {
+  background-color: #f44336;
+}
+
+/* Padding for Content */
+.mat-elevation-z8 {
+  padding: 16px;
+}
+

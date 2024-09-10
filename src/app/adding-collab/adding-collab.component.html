@@ -1,0 +1,96 @@
+<div class="dialog-container">
+  <button mat-icon-button class="close-button" mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <h2 mat-dialog-title>Ajouter Collaborateur</h2>
+
+  <div class="container">
+    <!-- Colonne de gauche pour l'image et le bouton -->
+    <div class="left-column">
+      <div class="image-container">
+        <img *ngIf="srcResult" [src]="srcResult" alt="Selected Image" class="selected-image" />
+      </div>
+      <button type="button" mat-raised-button (click)="fileInput.click()">Choisir un fichier</button>
+      <input 
+        hidden 
+        (change)="onFileSelected($event)" 
+        #fileInput 
+        type="file" 
+        id="file"
+        accept="image/*"
+      />
+    </div>
+
+    <!-- Colonne de droite pour les champs de saisie -->
+    <div class="right-column">
+      <div class="mat-form-field-container">
+        <!-- Nom du collaborateur -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nom du collaborateur</mat-label>
+          <input matInput [(ngModel)]="nom" name="title" required>
+        </mat-form-field>
+
+        <!-- Email -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput [(ngModel)]="mail" name="email" required>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section des technologies -->
+  <div class="techno-checkboxes">
+    <h2>Sélectionner les technologies</h2>
+    <div *ngFor="let techno of technos">
+      <mat-checkbox [checked]="isSelected(techno)" (change)="onCheckboxChange(techno, $event)">
+        {{ techno.name }}
+      </mat-checkbox>
+    </div>
+  </div>
+
+  <!-- Section des grades -->
+  <div class="grade-radios">
+    <h2>Sélectionner un grade</h2>
+    <mat-radio-group [(ngModel)]="selectedgrade">
+      <mat-radio-button *ngFor="let g of grade" [value]="g">{{ g.gradeName }}</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <!-- Section des sites -->
+  <div class="site-radios">
+    <h2>Sélectionner le site</h2>
+    <mat-radio-group [(ngModel)]="selectedSite">
+      <mat-radio-button *ngFor="let s of site" [value]="s">{{ s.city }}</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+<!-- Role selection -->
+<div class="role-dropdown">
+  <h2>Sélectionner le rôle</h2>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Rôle</mat-label>
+    <mat-select [(ngModel)]="selectedrole" required>
+      <mat-option *ngFor="let r of roles" [value]="r">{{ r.role }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<!-- Statut selection -->
+<div class="statut-dropdown">
+  <h2>Sélectionner le statut</h2>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Statut</mat-label>
+    <mat-select [(ngModel)]="selectedstatut" required>
+      <mat-option *ngFor="let st of statuts" [value]="st">{{ st.statut }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+
+  <!-- Bouton d'ajout -->
+  <div mat-dialog-actions>
+    <button mat-button class="submit-button" (click)="onSave()">Ajouter</button>
+  </div>
+</div>

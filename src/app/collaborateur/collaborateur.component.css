@@ -1,0 +1,127 @@
+/* General page container */
+/* Container Styling */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar and Footer */
+app-navbar {
+  display: block;
+}
+
+app-footer {
+  display: block;
+  margin-top: auto;
+}
+
+/* Filter container styling */
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-input {
+  width: 100%;
+  max-width: 200px;
+  margin-right: 10px;
+}
+
+.add-button {
+  margin-left: 10px;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  margin-top: 10px;
+}
+
+th.mat-header-cell {
+  font-weight: bold;
+}
+
+.mat-elevation-z8 {
+  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2), 0px 8px 10px 1px rgba(0,0,0,0.14), 0px 3px 14px 2px rgba(0,0,0,0.12);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0,0,0,.05);
+}
+
+/* Button Styling */
+.btn-info {
+  background-color: #17a2b8;
+  border: none;
+}
+
+.btn-info:hover {
+  background-color: #138496;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* Aligning Buttons in Actions Column */
+.mat-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-cell .btn {
+  margin: 0 5px;
+}
+
+/* Paginator styling */
+.mat-paginator {
+  margin-top: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .filter-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .filter-input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .add-button {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .mat-elevation-z8 {
+    padding: 10px;
+  }
+}

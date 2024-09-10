@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Ajouter status du projet</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Nom du Status</mat-label>
+    <input matInput [(ngModel)]="Name" required>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onSave()">Save</button>
+  <button mat-button (click)="dialogRef.close()">Cancel</button>
+</div>
